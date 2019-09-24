@@ -7,6 +7,8 @@ function [X_norm, mu, sigma] = featureNormalize(X)
 
 % You need to set these values correctly
 X_norm = X;
+
+
 mu = zeros(1, size(X, 2));
 sigma = zeros(1, size(X, 2));
 
@@ -17,6 +19,11 @@ sigma = zeros(1, size(X, 2));
 %               standard deviation of each feature and divide
 %               each feature by it's standard deviation, storing
 %               the standard deviation in sigma. 
+
+mu= mean(X);
+sigma = std(X);
+a=(X.-mu);
+X_norm= a./sigma;
 %
 %               Note that X is a matrix where each column is a 
 %               feature and each row is an example. You need 
