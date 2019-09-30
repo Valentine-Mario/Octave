@@ -18,9 +18,16 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 
+sigmoid=sigmoid(X*theta);
+%remove the first index of the vector and store it in s_theta
+new_theta=theta(2:size(theta));
+%replace the first value of the vector with zero since we would not regularize 
+%theta(1)
+theta_regularize=[0; new_theta];
 
+J=-((1/m) * (sum(y' *log(sigmoid) + (1-y)' *log(1-sigmoid))))+(lambda/(2*m))*sum(theta_regularize'*theta_regularize);
 
-
+grad=(1/m)* (X'*(sigmoid-y)+ lambda*theta_regularize);
 
 % =============================================================
 
